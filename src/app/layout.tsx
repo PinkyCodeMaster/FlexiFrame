@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Facebook, Instagram, Linkedin, X, Youtube } from "lucide-react";
+import { Navbar2, Navbar2Props } from "@/components/navbar/navbar2";
+import { Footer1, Footer1Props } from "@/components/footer/footer1";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -17,6 +20,110 @@ export const metadata: Metadata = {
 interface RootLayoutProps {
   children: React.ReactNode;
 }
+
+const Navbar2Defaults: Navbar2Props = {
+  logo: {
+    src: "",
+    alt: "Logo image1",
+    width: 200,
+    height: 50,
+  },
+  links: [
+    { title: "Web Design", url: "/services/design" },
+    { title: "Web Hosting", url: "/services/hosting" },
+    { title: "Custom Solutions", url: "/services/custom" },
+    {
+      title: "More Services",
+      url: "/services",
+      subLinks: [
+        { title: "E-commerce Solutions", url: "/services" },
+        { title: "CMS Development", url: "/services/cms" },
+        { title: "Mobile App Development", url: "/services/mobile-app" },
+        { title: "Maintenance and Support", url: "/services/maintenance" },
+        { title: "Graphic Design", url: "/services/graphic-design" },
+        { title: "Social Media Management", url: "/services/social-media" },
+        { title: "Email Marketing", url: "/services/email-marketing" },
+        { title: "Accessibility Consulting", url: "/services/accessibility" },
+        { title: "Website Audits", url: "/services/audits" },
+        { title: "Training and Workshops", url: "/services/training" },
+      ],
+    },
+  ],
+  cta: [
+    {
+      link: "/contact",
+      button: {
+        title: "Contact Us",
+        size: "sm",
+      },
+    },
+  ],
+};
+
+const Footer1Defaults: Footer1Props = {
+  image: {
+    src: "", // Update with your actual logo URL
+    alt: "Net Guru Solutions Logo",
+    width: 200,
+    height: 50,
+  },
+  newsletterDescription:
+    "Join our newsletter to stay up to date on features and releases.",
+  inputPlaceholder: "Enter your email",
+  button: {
+    title: "Subscribe",
+    variant: "secondary",
+    size: "sm",
+  },
+  termsAndConditions: {
+    textBeforeLink: "By subscribing you agree to with our",
+    linkText: "Privacy Policy",
+    url: "/privacy-policy",
+    textAfterLink: "and provide consent to receive updates from our company.",
+  },
+  columnLinks: [
+    {
+      title: "Column One",
+      links: [
+        { title: "Link to google One", url: "https://google.com" },
+        { title: "Link to google Two", url: "https://google.com" },
+        { title: "Link to google Three", url: "https://google.com" },
+        { title: "Link to google Four", url: "https://google.com" },
+        { title: "Link to google Five", url: "https://google.com" },
+      ],
+    },
+    {
+      title: "Column Two",
+      links: [
+        { title: "Link to google Six", url: "https://google.com" },
+        { title: "Link to google Seven", url: "https://google.com" },
+        { title: "Link to google Eight", url: "https://google.com" },
+        { title: "Link to google Nine", url: "https://google.com" },
+        { title: "Link to google Ten", url: "https://google.com" },
+      ],
+    },
+    {
+      title: "Follow us",
+      links: [
+        { title: "Facebook", url: "https://facebook.com", icon: <Facebook /> },
+        {
+          title: "Instagram",
+          url: "https://facebook.com",
+          icon: <Instagram />,
+        },
+        { title: "X", url: "https://facebook.com", icon: <X /> },
+        { title: "LinkedIn", url: "https://facebook.com", icon: <Linkedin /> },
+        { title: "Youtube", url: "https://facebook.com", icon: <Youtube /> },
+      ],
+    },
+  ],
+  footerText: "© 2024 Net Guru Solutions. All rights reserved.",
+  footerLinks: [
+    { title: "Privacy Policy", url: "/privacy-policy" },
+    { title: "Terms of Service", url: "/terms-of-service" },
+    { title: "Cookies Settings", url: "/cookie-setting" },
+  ],
+};
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
@@ -34,7 +141,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <Navbar2 {...Navbar2Defaults} />
+          <main className="flex min-h-screen flex-col items-center justify-between">
+            {children}
+          </main>
+          {/* <Footer1 {...Footer1Defaults} /> */}
         </ThemeProvider>
       </body>
     </html>
